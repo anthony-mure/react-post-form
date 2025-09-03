@@ -9,6 +9,12 @@ const Main = () => {
     public: false,
   });
 
+  const handleFormData = (e) => {
+
+    setFormData({ ...formData, [e.target.name] : e.target.value });
+
+  };
+
 
   return (
     <div className="container">
@@ -23,6 +29,8 @@ const Main = () => {
              className="form-control"
               type="text"
               name="author"
+              value={formData.author}
+              onChange={handleFormData}
               placeholder="inserisci l'autore del nuovo post"
              />
           </div>
@@ -31,18 +39,26 @@ const Main = () => {
               className="form-control"
                type="text"
                name="title"
+               value={formData.title}
+               onChange={handleFormData}
                placeholder="inserisci il titolo del nuovo post"
             />
           </div>
           <div className="col-12 my-3">
-            <input 
+            <textarea 
             className="form-control"
-            type="textarea"
             name="body"
+            value={formData.body}
+            onChange={handleFormData}
             placeholder="inserisci il testo del nuovo post"
             />
           </div>
-           <select className="form-select" name="public">
+           <select 
+            className="form-select"
+            name="public"
+            value={formData.public}
+            onChange={handleFormData}
+            >
             <option value="">scegli un opzione</option>
             <option value="true">post pubblico</option>
             <option value="false">post privato</option>
