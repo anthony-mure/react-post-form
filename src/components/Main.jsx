@@ -1,6 +1,15 @@
-
+import { useState } from "react"
 
 const Main = () => {
+
+   const [formData, setFormData] = useState({
+    author: '',
+    title: '',
+    body: '',
+    public: false,
+  });
+
+
   return (
     <div className="container">
       <div className="row">
@@ -33,7 +42,7 @@ const Main = () => {
             placeholder="inserisci il testo del nuovo post"
             />
           </div>
-           <select className="form-select">
+           <select className="form-select" name="public">
             <option value="">scegli un opzione</option>
             <option value="true">post pubblico</option>
             <option value="false">post privato</option>
