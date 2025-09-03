@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from "axios";
 
 const Main = () => {
 
@@ -15,6 +16,15 @@ const Main = () => {
 
   };
 
+  const  handleSubmit = (e) => {
+     e.preventDefault();
+     axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts" , formData)
+     .then((resp) =>{
+      console.log("Dati inviati con successo :", resp.data);
+     });
+  };
+
+
 
   return (
     <div className="container">
@@ -23,7 +33,7 @@ const Main = () => {
           <h2>Crea un nuovo post</h2>
         </div>
        <div className="row">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="col-12 my-3">
             <input 
              className="form-control"
@@ -60,11 +70,11 @@ const Main = () => {
             onChange={handleFormData}
             >
             <option value="">scegli un opzione</option>
-            <option value="true">post pubblico</option>
+            <option value ="true">post pubblico</option>
             <option value="false">post privato</option>
            </select>
-           <div class="col-12 mt-3">
-             <button class="btn btn-primary" type="submit">invia post</button>
+           <div className="col-12 mt-3">
+             <button className="btn btn-primary" type="submit">invia post</button>
            </div>
         </form>
        </div>
