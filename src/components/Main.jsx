@@ -18,6 +18,7 @@ const Main = () => {
 
   const  handleSubmit = (e) => {
      e.preventDefault();
+
      axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts" , formData)
      .then((resp) =>{
       console.log("Dati inviati con successo :", resp.data);
@@ -66,8 +67,10 @@ const Main = () => {
            <select 
             className="form-select"
             name="public"
-            value={formData.public}
-            onChange={handleFormData}
+            value={formData.public ? "true" : "false"}
+            onChange={(e) => 
+               setFormData({ ...formData, public: e.target.value === "true" })
+            }
             >
             <option value="">scegli un opzione</option>
             <option value ="true">post pubblico</option>
@@ -80,7 +83,7 @@ const Main = () => {
        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Main
