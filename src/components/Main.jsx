@@ -7,12 +7,16 @@ const Main = () => {
     author: '',
     title: '',
     body: '',
-    public: false,
+    public: "",
   });
 
   const handleFormData = (e) => {
-
-    setFormData({ ...formData, [e.target.name] : e.target.value });
+    const {name, value } = e.target;
+    const newFormData = {
+      ...formData,
+      [name] : value,
+    };
+    setFormData(newFormData)
 
   };
 
@@ -67,14 +71,12 @@ const Main = () => {
            <select 
             className="form-select"
             name="public"
-            value={formData.public ? "true" : "false"}
-            onChange={(e) => 
-               setFormData({ ...formData, public: e.target.value === "true" })
-            }
+            value={formData.public}
+            onChange= {handleFormData}
             >
             <option value="">scegli un opzione</option>
-            <option value ="true">post pubblico</option>
-            <option value="false">post privato</option>
+            <option value ="yes">post pubblico</option>
+            <option value="no">post privato</option>
            </select>
            <div className="col-12 mt-3">
              <button className="btn btn-primary" type="submit">invia post</button>
